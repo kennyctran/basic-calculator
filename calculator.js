@@ -1,12 +1,14 @@
 $(document).ready(function () {
   var $calculator = $('#calculator');
-  calculator.html('');
+  // calculator.html('');
 
   // create html elements
   // a div to hold the text at the top
   var $screen = $('<div class="screen"><div>');
   // a paragraph element within to add text
   var $screenText = $('<p class="screen"></p>');
+
+  $screen.append($screenText).appendTo($calculator);
 
   // a container for the top three buttons with class operator
   var $aux = $('<div></div>')
@@ -29,6 +31,7 @@ $(document).ready(function () {
       class: 'btn operator',
       id: 'percent'
     });
+  $aux.append($clear).append($sign).append($percent).appendTo($calculator);
 
   // a container for the four operators on the right side clas operator
   var $operators = $('<div></div>')
@@ -61,6 +64,7 @@ $(document).ready(function () {
       class: 'btn operator',
       id: 'equals'
     });
+  $operators.append($division).append($multiplication).append($subtraction).append($addition).append($equals).appendTo($calculator);
 
   // a container for all numbers an decimal
   var $numbers = $('<div></div>')
@@ -121,7 +125,7 @@ $(document).ready(function () {
       class: 'btn number',
       id: 'decimal'
     });
-
+  $numbers.append($seven).append($eight).append($nine).append($four).append($five).append($six).append($one).append($two).append($three).append($zero).append($decimal).appendTo($calculator);
   // helper functions
 
   // listener events
