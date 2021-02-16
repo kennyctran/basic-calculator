@@ -14,17 +14,17 @@ $(document).ready(function () {
       class: 'container aux'
     });
   // this will contain three buttons
-  var $clear = $('<button></button>')
+  var $clear = $('<button>C</button>')
     .attr({
       class: 'operator',
       id: 'clear'
     });
-  var $sign = $('<button></button>')
+  var $sign = $('<button>+/-</button>')
     .attr({
       class: 'operator',
       id: 'sign'
     });
-  var $percent = $('<button></button>')
+  var $percent = $('<button>%</button>')
     .attr({
       class: 'operator',
       id: 'percent'
@@ -36,27 +36,27 @@ $(document).ready(function () {
       class: 'container operators'
     });
   // this will contain 5 buttons
-  var $division = $('<button></button>')
+  var $division = $('<button>&divide;</button>')
     .attr({
       class: 'operator',
       id: 'division'
     });
-  var $multiplication = $('<button></button>')
+  var $multiplication = $('<button>X</button>')
     .attr({
       class: 'operator',
       id: 'multiplication'
     });
-  var $subtraction = $('<button></button>')
+  var $subtraction = $('<button>&mdash;</button>')
     .attr({
       class: 'operator',
       id: 'subtraction'
     });
-  var $addition = $('<button></button>')
+  var $addition = $('<button>+</button>')
     .attr({
       class: 'operator',
       id: 'addition'
     });
-  var $equals = $('<button></button>')
+  var $equals = $('<button>=</button>')
     .attr({
       class: 'operator',
       id: 'equals'
@@ -66,57 +66,57 @@ $(document).ready(function () {
   var $numbers = $('<div></div>')
     .attr('class', 'container numbers');
   // this will contain 11 buttons
-  var $seven = $('<button></button>')
+  var $seven = $('<button>7</button>')
     .attr({
       class: 'number',
       id: 'seven'
     });
-  var $eight = $('<button ></button>')
+  var $eight = $('<button>8</button>')
     .attr({
       class: 'number',
       id: 'eight'
     });
-  var $nine = $('<button></button>')
+  var $nine = $('<button>9</button>')
     .attr({
       class: 'number',
       id: 'nine'
     });
-  var $four = $('<button></button>')
+  var $four = $('<button>4</button>')
     .attr({
       class: 'number',
       id: 'four'
     });
-  var $five = $('<button></button>')
+  var $five = $('<button>5</button>')
     .attr({
       class: 'number',
       id: 'five'
     });
-  var $six = $('<button></button>')
+  var $six = $('<button>6</button>')
     .attr({
       class: 'number',
       id: 'six'
     });
-  var $one = $('<button></button>')
+  var $one = $('<button>1</button>')
     .attr({
       class: 'number',
       id: 'one'
     });
-  var $two = $('<button></button>')
+  var $two = $('<button>2</button>')
     .attr({
       class: 'number',
       id: 'two'
     });
-  var $three = $('<button></button>')
+  var $three = $('<button>3</button>')
     .attr({
       class: 'number',
       id: 'three'
     });
-  var $zero = $('<button></button>')
+  var $zero = $('<button>0</button>')
     .attr({
       class: 'number',
       id: 'zero'
     });
-  var $decimal = $('<button></button>')
+  var $decimal = $('<button>.</button>')
     .attr({
       class: 'number',
       id: 'decimal'
