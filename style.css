@@ -11,11 +11,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color:cornflowerblue;
 }
 
 #calculator {
-  height: 600px;
-  width: 400px;
+  min-height: 500px;
+  height: 50vh;
+  width: 50vh;
   background-color: rgb(173, 186, 211);
   display: grid;
   grid-template: "s s s s" 1fr
@@ -37,14 +39,25 @@ body {
 .aux {
   background-color: red;
   grid-area: a;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .operators {
   grid-area: o;
   background-color: teal;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
 }
 
 .numbers {
   grid-area: n;
   background-color:wheat;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+#zero {
+  grid-column: span 2;
 }
