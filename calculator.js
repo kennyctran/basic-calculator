@@ -126,6 +126,7 @@ $(document).ready(function () {
       id: 'decimal'
     });
   $numbers.append($seven).append($eight).append($nine).append($four).append($five).append($six).append($one).append($two).append($three).append($zero).append($decimal).appendTo($calculator);
+
   // helper functions
 
   // listener events

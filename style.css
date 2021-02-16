@@ -2,13 +2,49 @@
   margin: 0;
   box-sizing: border-box;
   font-size: 18px;
-  height: 100vh;
-  width: auto;
 
 }
 
-#calculator {
-  height: 100%;
+body {
+  height: 100vh;
   width: auto;
-  background-color: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculator {
+  height: 600px;
+  width: 400px;
+  background-color: rgb(173, 186, 211);
+  display: grid;
+  grid-template: "s s s s" 1fr
+                 "a a a o" 1fr
+                 "n n n o" 1fr
+                 "n n n o" 1fr
+                 "n n n o" 1fr
+                 "n n n o" 1fr
+                 / 1fr 1fr 1fr 1fr;
+}
+
+.screen {
+  background-color: black;
+  width: 100%;
+  height: auto;
+  grid-area: s;
+}
+
+.aux {
+  background-color: red;
+  grid-area: a;
+}
+
+.operators {
+  grid-area: o;
+  background-color: teal;
+}
+
+.numbers {
+  grid-area: n;
+  background-color:wheat;
 }
