@@ -8,8 +8,6 @@ $(document).ready(function () {
   // a paragraph element within to add text
   var $screenText = $('<p class="screen"></p>');
 
-  $screen.append($screenText).appendTo($calculator);
-
   // a container for the top three buttons with class operator
   var $aux = $('<div></div>')
     .attr({
@@ -31,7 +29,6 @@ $(document).ready(function () {
       class: 'operator',
       id: 'percent'
     });
-  $aux.append($clear).append($sign).append($percent).appendTo($calculator);
 
   // a container for the four operators on the right side clas operator
   var $operators = $('<div></div>')
@@ -64,7 +61,6 @@ $(document).ready(function () {
       class: 'operator',
       id: 'equals'
     });
-  $operators.append($division).append($multiplication).append($subtraction).append($addition).append($equals).appendTo($calculator);
 
   // a container for all numbers an decimal
   var $numbers = $('<div></div>')
@@ -125,13 +121,39 @@ $(document).ready(function () {
       class: 'number',
       id: 'decimal'
     });
-  $numbers.append($seven).append($eight).append($nine).append($four).append($five).append($six).append($one).append($two).append($three).append($zero).append($decimal).appendTo($calculator);
 
   // helper functions
 
   // listener events
 
   // add elements to DOM
+  $screen.append($screenText)
+    .appendTo($calculator);
+
+  $aux.append($clear)
+    .append($sign)
+    .append($percent)
+    .appendTo($calculator);
+
+  $operators.append($division)
+    .append($multiplication)
+    .append($subtraction)
+    .append($addition)
+    .append($equals)
+    .appendTo($calculator);
+
+  $numbers.append($seven)
+    .append($eight)
+    .append($nine)
+    .append($four)
+    .append($five)
+    .append($six)
+    .append($one)
+    .append($two)
+    .append($three)
+    .append($zero)
+    .append($decimal)
+    .appendTo($calculator);
 
 
 
