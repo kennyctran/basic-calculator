@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  height: 100vh;
+  width: auto;
+
+}
+
+#calculator {
+  height: 100%;
+  width: auto;
+}
