@@ -1,8 +1,11 @@
+/*
+Colors --
+
+*/
 * {
   margin: 0;
   box-sizing: border-box;
-  font-size: 18px;
-
+  font-size: 1.3rem;
 }
 
 body {
@@ -18,7 +21,8 @@ body {
   min-height: 500px;
   height: 50vh;
   width: 50vh;
-  background-color: rgb(173, 186, 211);
+  background-color: #1A1A1D;
+  box-shadow: 5px 10px;
   display: grid;
   grid-template: "s s s s" 1fr
                  "a a a o" 1fr
@@ -30,34 +34,93 @@ body {
 }
 
 .screen {
-  background-color: black;
   width: 100%;
   height: auto;
   grid-area: s;
+  background-color: #1A1A1D;
+}
+
+button {
+  border-radius: 50%;
+  width: 85%;
+  max-width: 90px;
+  height: auto;
+  outline: none;
+  color: white;
+  user-select: none;
+  border: 1px transparent solid;
+  transition: 0.2s;
+}
+
+.container {
+  justify-items: center;
+  grid-gap: 5px;
+  padding: 5px 0;
 }
 
 .aux {
-  background-color: red;
   grid-area: a;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding-bottom: 0;
+}
+
+.auxillary {
+  background-color: #9f9fa1;
+  color: black;
+}
+
+.auxillary:active {
+  background-color:#828285;
+}
+
+#clear:active {
+  color: white;
 }
 
 .operators {
   grid-area: o;
-  background-color: teal;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
+  padding-right: 5px;
+}
+
+.operator {
+  background-color: #C3073F;
+}
+
+.operator:active {
+  background-color:#991d42;
+}
+
+.operator:visited {
+  background-color:#991d42;
+}
+
+
+#division {
+  font-size: 1.3em;
 }
 
 .numbers {
   grid-area: n;
-  background-color:wheat;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
 
+.number {
+  background-color: #4E4E50;
+}
+
+.number:active {
+  background-color: #313133;
+}
+
 #zero {
   grid-column: span 2;
+  border-radius: 40px 40px;
+  max-width: 190px;
+  text-align: left;
+  text-indent: 15%;
 }

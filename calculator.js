@@ -14,19 +14,19 @@ $(document).ready(function () {
       class: 'container aux'
     });
   // this will contain three buttons
-  var $clear = $('<button>C</button>')
+  var $clear = $('<button>c</button>')
     .attr({
-      class: 'operator',
+      class: 'auxillary',
       id: 'clear'
     });
   var $sign = $('<button>+/-</button>')
     .attr({
-      class: 'operator',
+      class: 'auxillary',
       id: 'sign'
     });
   var $percent = $('<button>%</button>')
     .attr({
-      class: 'operator',
+      class: 'auxillary',
       id: 'percent'
     });
 
@@ -41,12 +41,12 @@ $(document).ready(function () {
       class: 'operator',
       id: 'division'
     });
-  var $multiplication = $('<button>X</button>')
+  var $multiplication = $('<button>x</button>')
     .attr({
       class: 'operator',
       id: 'multiplication'
     });
-  var $subtraction = $('<button>&mdash;</button>')
+  var $subtraction = $('<button>-</button>')
     .attr({
       class: 'operator',
       id: 'subtraction'
