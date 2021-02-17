@@ -70,13 +70,13 @@ button {
   color: black;
 }
 
-.auxillary:active {
+/* .auxillary:active {
   background-color:#828285;
-}
+} */
 
-#clear:active {
+/* #clear:active {
   color: white;
-}
+} */
 
 .operators {
   grid-area: o;
@@ -89,13 +89,13 @@ button {
   background-color: #C3073F;
 }
 
-.operator:active {
+/* .operator:active {
   background-color:#991d42;
-}
+} */
 
-.operator:visited {
+/* .operator:visited {
   background-color:#991d42;
-}
+} */
 
 
 #division {
@@ -113,9 +113,9 @@ button {
   background-color: #4E4E50;
 }
 
-.number:active {
+/* .number:active {
   background-color: #313133;
-}
+} */
 
 #zero {
   grid-column: span 2;
