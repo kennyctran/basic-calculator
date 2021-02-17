@@ -131,23 +131,32 @@ $(document).ready(function () {
     });
     if ($btn.attr('id') !== 'equals') { $btn.addClass('op-clicked'); }
   };
+
+  var handleNumberClick = function ($num, $limit) {
+    if ($screenText.text().length <= $limit) {
+      if ($screenText.text() === '0') {
+        $screenText.text('');
+      }
+      $screenText.append($num);
+    }
+  }
   // listener events----------
   $(document).on('click', '.operator', function () {
     handleOperatorClick($(this));
   });
 
-  // handle number click
-  // if a number is clicked, add that number to the DOM
   $(document).on('click', '.number', function () {
     var $num = $(this).text();
     var $limit = 12;
-    if ($screenText.text().length <= $limit) {
-      $screenText.append($num);
-    }
+    handleNumberClick($num, $limit);
   });
-  //add that corresponding number to the screen
-  // if any operator has the class op-clicked
-  // remove the class from that operator
+
+  // handle clear click
+  // when the clear button is clicked
+  // the screenText becomes 0
+  $(document).on('click', '#clear', function () {
+    $screenText.text('0');
+  });
 
   // handle decimal click
 
