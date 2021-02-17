@@ -4,9 +4,9 @@ $(document).ready(function () {
 
   // create html elements
   // a div to hold the text at the top
-  var $screen = $('<div class="screen"><div>');
+  var $screen = $('<div class="screen"></div>');
   // a paragraph element within to add text
-  var $screenText = $('<p class="screen"></p>');
+  var $screenText = $('<p class="screen">0</p>');
 
   // a container for the top three buttons with class operator
   var $aux = $('<div></div>')
@@ -129,12 +129,27 @@ $(document).ready(function () {
         $(this).removeClass('op-clicked');
       }
     });
-    $btn.addClass('op-clicked');
+    if ($btn.attr('id') !== 'equals') { $btn.addClass('op-clicked'); }
   };
   // listener events----------
   $(document).on('click', '.operator', function () {
     handleOperatorClick($(this));
   });
+
+  // handle number click
+  // if a number is clicked, add that number to the DOM
+  $(document).on('click', '.number', function () {
+    var $num = $(this).text();
+    var $limit = 12;
+    if ($screenText.text().length <= $limit) {
+      $screenText.append($num);
+    }
+  });
+  //add that corresponding number to the screen
+  // if any operator has the class op-clicked
+  // remove the class from that operator
+
+  // handle decimal click
 
 
   // add elements to DOM----------

@@ -41,9 +41,18 @@ body {
   background-color: #1A1A1D;
 }
 
+.screen p {
+  display: inline-block;
+  color: white;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  font-size: 2.4rem;
+}
+
 button {
   border-radius: 50%;
-  width: 1.8rem;
+  width: 75%;
   min-width: 90px;
   height: auto;
   outline: none;
@@ -51,6 +60,10 @@ button {
   user-select: none;
   border: 1px transparent solid;
   transition: all 0.3s ease;
+}
+
+.auxillary:active {
+  background-color: #d3d3d4;
 }
 
 .container {
@@ -70,14 +83,6 @@ button {
   background-color: #9f9fa1;
   color: black;
 }
-
-/* .auxillary:active {
-  background-color:#828285;
-} */
-
-/* #clear:active {
-  color: white;
-} */
 
 .operators {
   grid-area: o;
@@ -100,15 +105,6 @@ button {
   color: #C3073F;
 }
 
-/* .operator:active {
-  background-color:#991d42;
-} */
-
-/* .operator:visited {
-  background-color:#991d42;
-} */
-
-
 #division {
   font-size: 1.3em;
 }
@@ -124,9 +120,10 @@ button {
   background-color: #4E4E50;
 }
 
-/* .number:active {
-  background-color: #313133;
-} */
+.number:active {
+  background-color:  #a09e9e;
+  color: black;
+}
 
 #zero {
   grid-column: span 2;
