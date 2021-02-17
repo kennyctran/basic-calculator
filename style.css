@@ -5,7 +5,7 @@ Colors --
 * {
   margin: 0;
   box-sizing: border-box;
-  font-size: 1.3rem;
+  font-size: 30px;
 }
 
 body {
@@ -19,8 +19,9 @@ body {
 
 #calculator {
   min-height: 500px;
-  height: 50vh;
-  width: 50vh;
+  min-width: 450px;
+  width: 500px;
+  height: auto;
   background-color: #1A1A1D;
   box-shadow: 5px 10px;
   display: grid;
@@ -42,14 +43,14 @@ body {
 
 button {
   border-radius: 50%;
-  width: 85%;
-  max-width: 90px;
+  width: 1.8rem;
+  min-width: 90px;
   height: auto;
   outline: none;
   color: white;
   user-select: none;
   border: 1px transparent solid;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
 .container {
@@ -89,6 +90,16 @@ button {
   background-color: #C3073F;
 }
 
+.operator:active {
+  background-color:#a03152;
+  color: white;
+}
+
+.op-clicked {
+  background-color: white;
+  color: #C3073F;
+}
+
 /* .operator:active {
   background-color:#991d42;
 } */
@@ -120,7 +131,7 @@ button {
 #zero {
   grid-column: span 2;
   border-radius: 40px 40px;
-  max-width: 190px;
+  min-width: 190px;
   text-align: left;
   text-indent: 15%;
 }

@@ -122,11 +122,22 @@ $(document).ready(function () {
       id: 'decimal'
     });
 
-  // helper functions
+  // helper functions----------
+  var handleOperatorClick = function ($btn) {
+    $('.operator').each(function () {
+      if ($(this).hasClass('op-clicked')) {
+        $(this).removeClass('op-clicked');
+      }
+    });
+    $btn.addClass('op-clicked');
+  };
+  // listener events----------
+  $(document).on('click', '.operator', function () {
+    handleOperatorClick($(this));
+  });
 
-  // listener events
 
-  // add elements to DOM
+  // add elements to DOM----------
   $screen.append($screenText)
     .appendTo($calculator);
 
@@ -154,7 +165,4 @@ $(document).ready(function () {
     .append($zero)
     .append($decimal)
     .appendTo($calculator);
-
-
-
 });
