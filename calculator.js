@@ -118,7 +118,6 @@ $(document).ready(function () {
     });
   var $decimal = $('<button>.</button>')
     .attr({
-      class: 'number',
       id: 'decimal'
     });
 
@@ -133,7 +132,7 @@ $(document).ready(function () {
   };
 
   var handleNumberClick = function ($num, $limit) {
-    if ($screenText.text().length <= $limit) {
+    if ($screenText.text().length < $limit) {
       if ($screenText.text() === '0') {
         $screenText.text('');
       }
@@ -143,12 +142,19 @@ $(document).ready(function () {
 
   var handleSignClick = function () {
     var $number = $screenText.text();
+    if ($number === '0') { return; }
     if (!$number.match(/-/)) {
       $screenText.prepend('-');
     } else {
       $screenText.text($number.substring(1));
     }
+  };
 
+  var handleDecimalClick = function () {
+    var $number = $screenText.text();
+    if ($number.indexOf('.') === -1 && $number.length <= 8) {
+      $screenText.append('.');
+    }
   };
   // listener events----------
   $(document).on('click', '.operator', function () {
@@ -165,18 +171,13 @@ $(document).ready(function () {
     $screenText.text('0');
   });
 
-  // handle sign click
-  // when sign is clicked
   $(document).on('click', '#sign', function () {
     handleSignClick();
   });
-  // if the first element of the text is not a -
-  // prepend a - to the text
-  // if there is a - at the front of the text
-  // remove it by making the number without the sign
 
-  // handle decimal click
-
+  $(document).on('click', '#decimal', function () {
+    handleDecimalClick();
+  });
 
   // add elements to DOM----------
   $screen.append($screenText)
