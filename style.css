@@ -6,6 +6,7 @@ Colors --
   margin: 0;
   box-sizing: border-box;
   font-size: 30px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -14,16 +15,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:cornflowerblue;
+  background-color:rgb(237, 239, 241);
 }
 
 #calculator {
   min-height: 500px;
+  max-heigth: 550px;
   min-width: 450px;
   max-width: 500px;
+  border-radius: 10px 10px 0 0;
   height: auto;
   background-color: #1A1A1D;
-  box-shadow: 5px 10px;
+  box-shadow: 5px 10px 20px 10px rgb(29, 25, 25);
   display: grid;
   grid-template: "s s s s" 1fr
                  "a a a o" 1fr
@@ -39,6 +42,7 @@ body {
   height: auto;
   grid-area: s;
   background-color: #1A1A1D;
+  border-radius: 10px 10px 0 0;
 }
 
 .screen p {
