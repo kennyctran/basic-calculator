@@ -139,7 +139,17 @@ $(document).ready(function () {
       }
       $screenText.append($num);
     }
-  }
+  };
+
+  var handleSignClick = function () {
+    var $number = $screenText.text();
+    if (!$number.match(/-/)) {
+      $screenText.prepend('-');
+    } else {
+      $screenText.text($number.substring(1));
+    }
+
+  };
   // listener events----------
   $(document).on('click', '.operator', function () {
     handleOperatorClick($(this));
@@ -147,16 +157,23 @@ $(document).ready(function () {
 
   $(document).on('click', '.number', function () {
     var $num = $(this).text();
-    var $limit = 12;
+    var $limit = 10;
     handleNumberClick($num, $limit);
   });
 
-  // handle clear click
-  // when the clear button is clicked
-  // the screenText becomes 0
   $(document).on('click', '#clear', function () {
     $screenText.text('0');
   });
+
+  // handle sign click
+  // when sign is clicked
+  $(document).on('click', '#sign', function () {
+    handleSignClick();
+  });
+  // if the first element of the text is not a -
+  // prepend a - to the text
+  // if there is a - at the front of the text
+  // remove it by making the number without the sign
 
   // handle decimal click
 
