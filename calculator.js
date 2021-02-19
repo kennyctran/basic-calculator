@@ -65,6 +65,15 @@ $(document).ready(function () {
 
   // FUNCTIONS TO HANDLE EVENT LISTENERS-------------
 
+  var opStored = function () {
+    $.each(operations, function (i, stored) {
+      if (stored) {
+        total = calculate[i](total, currentNum);
+        screenText.text(total);
+      }
+    });
+  };
+
   var reset = function () {
     window.total = 0;
     $.each(operations, function (op) {
@@ -72,25 +81,27 @@ $(document).ready(function () {
         operations[op] = false;
       }
     });
-    $('.op-clicked').removeClass('op-clicked');
     window.pending = false;
+    window.currentNum = 0;
+    $('.op-clicked').removeClass('op-clicked');
+    $screenText.text('0');
   };
 
   var handleOperatorClick = function ($btn) {
-    $('.operator').each(function () {
-      if ($(this).hasClass('op-clicked')) {
-        $(this).removeClass('op-clicked');
-      }
-    });
-    if ($btn.attr('id') !== 'equals') { $btn.addClass('op-clicked'); }
+    if ($btn.attr('id') !== 'equals') {
+      $('.op-clicked').removeClass('op-clicked')
+      $btn.addClass('op-clicked');
+    }
   };
 
   var handleNumberClick = function ($num, $limit) {
-    if ($screenText.text().length < $limit) {
-      if ($screenText.text() === '0') {
-        $screenText.text('');
+    if ($num !== '.') {
+      if ($screenText.text().length < $limit) {
+        if ($screenText.text() === '0') {
+          $screenText.text('');
+        }
+        $screenText.append($num);
       }
-      if ($num !== '.') { $screenText.append($num); }
     }
   };
 
@@ -117,13 +128,12 @@ $(document).ready(function () {
 
   $(document).on('click', '.number', function () {
     var $num = $(this).text();
-    var $limit = $num[0] === '-' ? 12 : 11;
+    var $limit = $num[0] === '-' ? 9 : 8;
     handleNumberClick($num, $limit);
   });
 
   $(document).on('click', '#clear', function () {
     reset();
-    $screenText.text('0');
   });
 
   $(document).on('click', '#sign', function () {
@@ -137,6 +147,11 @@ $(document).ready(function () {
   $(document).on('click', '#percent', function () {
     var $num = Number($screenText.text());
     $screenText.text($num / 100);
+  });
+
+  $(document).on('click', '#equals', function () {
+    opStored();
+    $('.op-clicked').removeClass('op-clicked');
   });
 
   // ADD ELEMENTS TO THE DOM-------------------
