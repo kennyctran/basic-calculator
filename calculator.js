@@ -59,7 +59,7 @@ $(document).ready(function () {
 
   assignClass([$screen, $screenText], 'screen');
   assignClass([$aux, $operators, $numbers], 'container');
-  assignClass($allAux, 'auxillary')
+  assignClass($allAux, 'auxillary');
   assignClass($allOperators, 'operator');
   assignClass($allNumbers, 'number');
 
@@ -70,9 +70,9 @@ $(document).ready(function () {
     $.each(operations, function (op) {
       if (operations[op]) {
         operations[op] = false;
-        $('#' + op).removeClass('op-clicked');
       }
     });
+    $('.op-clicked').removeClass('op-clicked');
   };
 
   var handleOperatorClick = function ($btn) {
