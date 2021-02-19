@@ -73,6 +73,7 @@ $(document).ready(function () {
       }
     });
     $('.op-clicked').removeClass('op-clicked');
+    window.pending = false;
   };
 
   var handleOperatorClick = function ($btn) {
