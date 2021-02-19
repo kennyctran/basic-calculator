@@ -1,7 +1,6 @@
 $(document).ready(function () {
   var $calculator = $('#calculator');
 
-
   // CREATE STATIC HTML ELEMENTS-----------------
   // Calculator Screen
   var $screen = $('<div></div>');
@@ -121,6 +120,11 @@ $(document).ready(function () {
 
   $(document).on('click', '#decimal', function () {
     handleDecimalClick();
+  });
+
+  $(document).on('click', '#percent', function () {
+    var $num = Number($screenText.text());
+    $screenText.text($num / 100);
   });
 
   // ADD ELEMENTS TO THE DOM-------------------
