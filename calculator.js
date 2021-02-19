@@ -65,6 +65,16 @@ $(document).ready(function () {
 
   // FUNCTIONS TO HANDLE EVENT LISTENERS-------------
 
+  var reset = function () {
+    window.total = 0;
+    $.each(operations, function (op) {
+      if (operations[op]) {
+        operations[op] = false;
+        $('#' + op).removeClass('op-clicked');
+      }
+    });
+  };
+
   var handleOperatorClick = function ($btn) {
     $('.operator').each(function () {
       if ($(this).hasClass('op-clicked')) {
@@ -111,6 +121,7 @@ $(document).ready(function () {
   });
 
   $(document).on('click', '#clear', function () {
+    reset();
     $screenText.text('0');
   });
 
