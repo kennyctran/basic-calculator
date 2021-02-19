@@ -2,6 +2,9 @@
 Colors --
 
 */
+/*============================
+  PAGE LAYOUT
+============================*/
 * {
   margin: 0;
   box-sizing: border-box;
@@ -18,9 +21,12 @@ body {
   background-color:rgb(237, 239, 241);
 }
 
+/*============================
+  APP DESIGN
+============================*/
 #calculator {
   min-height: 500px;
-  max-heigth: 550px;
+  max-height: 550px;
   min-width: 450px;
   max-width: 500px;
   border-radius: 10px 10px 0 0;
@@ -37,6 +43,9 @@ body {
                  / 1fr 1fr 1fr 1fr;
 }
 
+/*============================
+  CALCULATOR SCREEN
+============================*/
 .screen {
   width: 100%;
   height: auto;
@@ -54,7 +63,9 @@ body {
   font-size: 2.4rem;
   user-select: none;
 }
-
+/*============================
+  CALCULATOR BUTTONS
+============================*/
 button {
   border-radius: 50%;
   width: 75%;
@@ -67,10 +78,7 @@ button {
   transition: all 0.3s ease;
 }
 
-.auxillary:active {
-  background-color: #d3d3d4;
-}
-
+/*=== BUTTON CONTAINERS===*/
 .container {
   justify-items: center;
   grid-gap: 5px;
@@ -84,11 +92,6 @@ button {
   padding-bottom: 0;
 }
 
-.auxillary {
-  background-color: #9f9fa1;
-  color: black;
-}
-
 .operators {
   grid-area: o;
   display: grid;
@@ -96,6 +99,23 @@ button {
   padding-right: 5px;
 }
 
+.numbers {
+  grid-area: n;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+/*=== AUXILLARY BUTTONS===*/
+
+.auxillary {
+  background-color: #9f9fa1;
+  color: black;
+}
+
+.auxillary:active {
+  background-color: #d3d3d4;
+}
+/*=== OPERATOR BUTTONS===*/
 .operator {
   background-color: #C3073F;
 }
@@ -113,14 +133,7 @@ button {
 #division {
   font-size: 1.3em;
 }
-
-.numbers {
-  grid-area: n;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-}
-
+/*=== NUMBER BUTTONS===*/
 .numbers button {
   background-color: #4E4E50;
 }
