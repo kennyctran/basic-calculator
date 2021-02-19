@@ -1,127 +1,71 @@
 $(document).ready(function () {
   var $calculator = $('#calculator');
-  // calculator.html('');
 
-  // create html elements
-  // a div to hold the text at the top
-  var $screen = $('<div class="screen"></div>');
-  // a paragraph element within to add text
-  var $screenText = $('<p class="screen">0</p>');
 
-  // a container for the top three buttons with class operator
-  var $aux = $('<div></div>')
-    .attr({
-      class: 'container aux'
-    });
-  // this will contain three buttons
-  var $clear = $('<button>c</button>')
-    .attr({
-      class: 'auxillary',
-      id: 'clear'
-    });
-  var $sign = $('<button>+/-</button>')
-    .attr({
-      class: 'auxillary',
-      id: 'sign'
-    });
-  var $percent = $('<button>%</button>')
-    .attr({
-      class: 'auxillary',
-      id: 'percent'
-    });
+  // CREATE STATIC HTML ELEMENTS-----------------
+  // Calculator Screen
+  var $screen = $('<div></div>');
+  var $screenText = $('<p>0</p>');
 
-  // a container for the four operators on the right side clas operator
-  var $operators = $('<div></div>')
-    .attr({
-      class: 'container operators'
-    });
-  // this will contain 5 buttons
-  var $division = $('<button>&divide;</button>')
-    .attr({
-      class: 'operator',
-      id: 'division'
-    });
-  var $multiplication = $('<button>x</button>')
-    .attr({
-      class: 'operator',
-      id: 'multiplication'
-    });
-  var $subtraction = $('<button>-</button>')
-    .attr({
-      class: 'operator',
-      id: 'subtraction'
-    });
-  var $addition = $('<button>+</button>')
-    .attr({
-      class: 'operator',
-      id: 'addition'
-    });
-  var $equals = $('<button>=</button>')
-    .attr({
-      class: 'operator',
-      id: 'equals'
-    });
+  // Auxillary Buttons
+  var $aux = $('<div></div>').attr('class', 'aux');
+  var $clear = $('<button id="clear">c</button>');
+  var $sign = $('<button id="sign">+/-</button>');
+  var $percent = $('<button id="percent">%</button>');
 
-  // a container for all numbers an decimal
-  var $numbers = $('<div></div>')
-    .attr('class', 'container numbers');
-  // this will contain 11 buttons
-  var $seven = $('<button>7</button>')
-    .attr({
-      class: 'number',
-      id: 'seven'
-    });
-  var $eight = $('<button>8</button>')
-    .attr({
-      class: 'number',
-      id: 'eight'
-    });
-  var $nine = $('<button>9</button>')
-    .attr({
-      class: 'number',
-      id: 'nine'
-    });
-  var $four = $('<button>4</button>')
-    .attr({
-      class: 'number',
-      id: 'four'
-    });
-  var $five = $('<button>5</button>')
-    .attr({
-      class: 'number',
-      id: 'five'
-    });
-  var $six = $('<button>6</button>')
-    .attr({
-      class: 'number',
-      id: 'six'
-    });
-  var $one = $('<button>1</button>')
-    .attr({
-      class: 'number',
-      id: 'one'
-    });
-  var $two = $('<button>2</button>')
-    .attr({
-      class: 'number',
-      id: 'two'
-    });
-  var $three = $('<button>3</button>')
-    .attr({
-      class: 'number',
-      id: 'three'
-    });
-  var $zero = $('<button>0</button>')
-    .attr({
-      class: 'number',
-      id: 'zero'
-    });
-  var $decimal = $('<button>.</button>')
-    .attr({
-      id: 'decimal'
-    });
+  // Operator Buttons
+  var $operators = $('<div></div>').attr('class', 'operators');
+  var $division = $('<button id="division">&divide;</button>');
+  var $multiplication = $('<button id="multiplication">x</button>');
+  var $subtraction = $('<button id="subtraction">-</button>');
+  var $addition = $('<button id="addition">+</button>');
+  var $equals = $('<button id="equals">=</button>');
 
-  // helper functions----------
+  // Number Buttons
+  var $numbers = $('<div></div>').attr('class', 'numbers');
+  var $seven = $('<button id="seven">7</button>');
+  var $eight = $('<button id="eight">8</button>');
+  var $nine = $('<button id="nine">9</button>');
+  var $four = $('<button id="four">4</button>');
+  var $five = $('<button id="five">5</button>');
+  var $six = $('<button id="six">6</button>');
+  var $one = $('<button id="one">1</button>');
+  var $two = $('<button id="two">2</button>');
+  var $three = $('<button id="three">3</button>');
+  var $zero = $('<button id="zero">0</button>');
+  var $decimal = $('<button id="decimal">.</button>');
+
+  // Class Attributes
+  var $allAux = [$clear, $sign, $percent];
+  var $allOperators = [$division, $multiplication, $subtraction, $addition, $equals];
+  var $allNumbers = [
+    $seven,
+    $eight,
+    $nine,
+    $four,
+    $five,
+    $six,
+    $one,
+    $two,
+    $three,
+    $zero,
+    $decimal
+  ];
+
+  var assignClass = function ($collection, $class) {
+    $collection.forEach(function ($e) {
+      $e.addClass($class);
+    });
+  };
+
+  assignClass([$screen, $screenText], 'screen');
+  assignClass([$aux, $operators, $numbers], 'container');
+  assignClass($allAux, 'auxillary')
+  assignClass($allOperators, 'operator');
+  assignClass($allNumbers, 'number');
+
+  // FUNCTIONS TO HANDLE EVENT LISTENERS-------------
+
   var handleOperatorClick = function ($btn) {
     $('.operator').each(function () {
       if ($(this).hasClass('op-clicked')) {
@@ -136,7 +80,7 @@ $(document).ready(function () {
       if ($screenText.text() === '0') {
         $screenText.text('');
       }
-      $screenText.append($num);
+      if ($num !== '.') { $screenText.append($num); }
     }
   };
 
@@ -156,14 +100,14 @@ $(document).ready(function () {
       $screenText.append('.');
     }
   };
-  // listener events----------
+  // EVENT LISTENERS--------------------------
   $(document).on('click', '.operator', function () {
     handleOperatorClick($(this));
   });
 
   $(document).on('click', '.number', function () {
     var $num = $(this).text();
-    var $limit = 10;
+    var $limit = $num[0] === '-' ? 12 : 11;
     handleNumberClick($num, $limit);
   });
 
@@ -179,32 +123,17 @@ $(document).ready(function () {
     handleDecimalClick();
   });
 
-  // add elements to DOM----------
-  $screen.append($screenText)
-    .appendTo($calculator);
+  // ADD ELEMENTS TO THE DOM-------------------
+  var appendElements = function ($parent, $children) {
+    $children.forEach(function ($e) {
+      $parent.append($e);
+    });
+    $parent.appendTo($calculator);
+  };
 
-  $aux.append($clear)
-    .append($sign)
-    .append($percent)
-    .appendTo($calculator);
-
-  $operators.append($division)
-    .append($multiplication)
-    .append($subtraction)
-    .append($addition)
-    .append($equals)
-    .appendTo($calculator);
-
-  $numbers.append($seven)
-    .append($eight)
-    .append($nine)
-    .append($four)
-    .append($five)
-    .append($six)
-    .append($one)
-    .append($two)
-    .append($three)
-    .append($zero)
-    .append($decimal)
-    .appendTo($calculator);
+  $screen.append($screenText).appendTo($calculator);
+  appendElements($aux, $allAux);
+  appendElements($operators, $allOperators);
+  appendElements($numbers, $allNumbers);
 });
+
