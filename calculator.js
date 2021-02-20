@@ -67,25 +67,65 @@ $(document).ready(function () {
 
   var reset = function () {
     window.total = 0;
-    $.each(operations, function (op) {
-      if (operations[op]) {
-        operations[op] = false;
+    $.each(operations, function (k, op) {
+      if (op) {
+        operations[k] = false;
       }
     });
     window.pending = false;
     window.currentNum = 0;
     window.first = true;
     window.equalsChain = false;
-    $('.op-clicked').removeClass('op-clicked');
+    rmClass();
     $screenText.text('0');
+  };
+
+  var rmClass = function () {
+    $('.op-clicked').removeClass('op-clicked');
   };
 
   var toNum = function () {
     return Number($screenText.text());
   };
 
-  var rmClass = function () {
-    $('.op-clicked').removeClass('op-clicked');
+  var storedOp = function () {
+    var operation = null;
+    $.each(operations, function (op, stored) {
+      if (stored) {
+        operation = calculate[op];
+      }
+    });
+    return operation;
+  };
+
+  var handleOperatorClick = function ($btn) {
+    var stored;
+
+    if ($btn.attr('id') !== 'equals') {
+      rmClass();
+      $btn.addClass('op-clicked');
+
+      if (window.equalsChain) {
+        window.equalsChain = false;
+      }
+
+      if (window.first) {
+        window.first = false;
+        total = toNum();
+      } else {
+        stored = storedOp();
+        $.each(operations, function (k, op) {
+          if (op) {
+            total = stored(total, Number($screenText.text()));
+            current = toNum();
+            $screenText.text(total.toString());
+            operations[k] = false;
+          }
+        });
+      }
+      operations[$btn.attr('id')] = true;
+    }
+    pending = true;
   };
 
   var handleEqualsClick = function () {
@@ -110,51 +150,25 @@ $(document).ready(function () {
     rmClass();
   };
 
-  var handleOperatorClick = function ($btn) {
-
-    if ($btn.attr('id') !== 'equals') {
-      $('.op-clicked').removeClass('op-clicked')
-      $btn.addClass('op-clicked');
-
-      if (window.equalsChain) {
-        window.equalsChain = false;
-      }
-
-      if (first) {
-        first = false;
-        total = Number($screenText.text());
-      } else {
-        $.each(operations, function (k, op) {
-          if (op) {
-            total = calculate[k](total, Number($screenText.text()));
-            current = Number($screenText.text());
-            $screenText.text(total);
-            operations[k] = false;
-          }
-        });
-      }
-
-      operations[$btn.attr('id')] = true;
-    }
-    pending = true;
-  };
-
   var handleNumberClick = function ($num, $limit) {
-    if ($('.op-clicked').length > 0) {
-      $('.op-clicked').removeClass('op-clicked');
+    var clear = function () {
       $screenText.text('');
     }
-    $.each(operations, function (i, stored) {
-      if (stored && pending) {
+    if ($('.op-clicked').length > 0) {
+      rmClass();
+      clear();
+    }
+    $.each(operations, function (k, op) {
+      if (op && pending) {
         pending = false;
-        $screenText.text('');
+        clear();
       }
     });
 
     if ($num !== '.') {
       if ($screenText.text().length < $limit) {
         if ($screenText.text() === '0') {
-          $screenText.text('');
+          clear();
         }
         $screenText.append($num);
       }
@@ -163,7 +177,6 @@ $(document).ready(function () {
 
   var handleSignClick = function () {
     var $number = $screenText.text();
-    if ($number === '0') { return; }
     if (!$number.match(/-/)) {
       $screenText.prepend('-');
     } else {
@@ -176,16 +189,6 @@ $(document).ready(function () {
     if ($number.indexOf('.') === -1 && $number.length <= 8) {
       $screenText.append('.');
     }
-  };
-
-  var storedOp = function () {
-    var operation = null;
-    $.each(operations, function (op, stored) {
-      if (stored) {
-        operation = calculate[op];
-      }
-    });
-    return operation;
   };
   // EVENT LISTENERS--------------------------
   $(document).on('click', '.operator', function () {
