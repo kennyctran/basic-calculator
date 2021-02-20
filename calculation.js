@@ -2,23 +2,22 @@
 // THIS STORES INPUTTED NUMBERS TO MAKE CALCULATIONS
 
 window.total = 0;
+window.currentNum = 0;
+window.equalsChain = false;
 
 window.operations = {
   addition: false,
   subtraction: false,
   multiplication: false,
-  division: false,
-  equals: false
+  division: false
 };
 
 window.calculate = {
-  addition: (a, b) => a + b,
-  subtraction: (a, b) => a - b,
-  multiplication: (a, b) => a * b,
-  division: (a, b) => a / b
+  addition: function (a, b) { return a + b; },
+  subtraction: function (a, b) { return a - b; },
+  multiplication: function (a, b) { return a * b; },
+  division: function (a, b) { return a / b; }
 };
 
-window.first = true; // add variable to account for the first number inputted
+window.first = true;
 window.pending = false;
-window.currentNum = 0;
-// create a stored number variable. When hitting = multiple times, it will take the stored number and run that calculation against the total which is the number displayed on the screen
