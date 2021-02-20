@@ -80,6 +80,36 @@ $(document).ready(function () {
     $screenText.text('0');
   };
 
+  var toNum = function () {
+    return Number($screenText.text());
+  };
+
+  var rmClass = function () {
+    $('.op-clicked').removeClass('op-clicked');
+  };
+
+  var handleEqualsClick = function () {
+    var stored = storedOp();
+    var $screenNum = toNum();
+
+    if (!window.equalsChain) {
+      if (stored) {
+        total = stored(total, $screenNum);
+        currentNum = $screenNum;
+        window.equalsChain = true;
+        $screenText.text(total.toString());
+        return;
+      }
+
+    } else {
+      if (stored) {
+        total = stored($screenNum, currentNum);
+        $screenText.text(total.toString());
+      }
+    }
+    rmClass();
+  };
+
   var handleOperatorClick = function ($btn) {
 
     if ($btn.attr('id') !== 'equals') {
@@ -147,6 +177,16 @@ $(document).ready(function () {
       $screenText.append('.');
     }
   };
+
+  var storedOp = function () {
+    var operation = null;
+    $.each(operations, function (op, stored) {
+      if (stored) {
+        operation = calculate[op];
+      }
+    });
+    return operation;
+  };
   // EVENT LISTENERS--------------------------
   $(document).on('click', '.operator', function () {
     handleOperatorClick($(this));
@@ -175,40 +215,8 @@ $(document).ready(function () {
     $screenText.text($num / 100);
   });
 
-  var storedOp = function () {
-    var operation = null;
-    $.each(operations, function (op, stored) {
-      if (stored) {
-        operation = calculate[op];
-      }
-    });
-    return operation;
-  };
-
   $(document).on('click', '#equals', function () {
-    var stored = storedOp();
-
-    if (!window.equalsChain) {
-      $.each(operations, function (k, op) {
-        if (op) {
-          total = calculate[k](total, Number($screenText.text()));
-          currentNum = Number($screenText.text());
-          window.equalsChain = true;
-          $screenText.text(total);
-          return;
-        }
-      });
-
-    } else {
-      $.each(operations, function (k, op) {
-        if (op) {
-          total = calculate[k](Number($screenText.text()), currentNum);
-          $screenText.text(total);
-        }
-      });
-    }
-
-    $('.op-clicked').removeClass('op-clicked');
+    handleEqualsClick();
   });
 
   // ADD ELEMENTS TO THE DOM-------------------
