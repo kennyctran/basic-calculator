@@ -65,15 +65,6 @@ $(document).ready(function () {
 
   // FUNCTIONS TO HANDLE EVENT LISTENERS-------------
 
-  // var opStored = function () {
-  //   $.each(operations, function (i, stored) {
-  //     if (stored) {
-  //       total = calculate[i](total, currentNum);
-  //       screenText.text(total);
-  //     }
-  //   });
-  // };
-
   var reset = function () {
     window.total = 0;
     $.each(operations, function (op) {
@@ -84,6 +75,7 @@ $(document).ready(function () {
     window.pending = false;
     window.currentNum = 0;
     window.first = true;
+    window.equalsChain = false;
     $('.op-clicked').removeClass('op-clicked');
     $screenText.text('0');
   };
@@ -94,8 +86,8 @@ $(document).ready(function () {
       $('.op-clicked').removeClass('op-clicked')
       $btn.addClass('op-clicked');
 
-      if (window.operations.equals) {
-        window.operatins.equals = false;
+      if (window.equalsChain) {
+        window.equalsChain = false;
       }
 
       if (first) {
@@ -112,23 +104,16 @@ $(document).ready(function () {
         });
       }
 
-      // assign Number($screenText.text()) to currentNum
-      // currentNum = Number($screenText.text());
-      // the recently clicked op is now true
       operations[$btn.attr('id')] = true;
-
     }
     pending = true;
   };
 
   var handleNumberClick = function ($num, $limit) {
-    // if an operator is highlighted, unhighlight when clicking a number
     if ($('.op-clicked').length > 0) {
       $('.op-clicked').removeClass('op-clicked');
       $screenText.text('');
     }
-    // if any operation is stored and num is pending, reset screen, not working for equals
-    // because there is no property for equals due to chaining equals for now
     $.each(operations, function (i, stored) {
       if (stored && pending) {
         pending = false;
@@ -190,15 +175,25 @@ $(document).ready(function () {
     $screenText.text($num / 100);
   });
 
-  $(document).on('click', '#equals', function () {
-    var calc;
+  var storedOp = function () {
+    var operation = null;
+    $.each(operations, function (op, stored) {
+      if (stored) {
+        operation = calculate[op];
+      }
+    });
+    return operation;
+  };
 
-    if (!operations.equals) {
+  $(document).on('click', '#equals', function () {
+    var stored = storedOp();
+
+    if (!window.equalsChain) {
       $.each(operations, function (k, op) {
         if (op) {
           total = calculate[k](total, Number($screenText.text()));
           currentNum = Number($screenText.text());
-          window.operations.equals = true;
+          window.equalsChain = true;
           $screenText.text(total);
           return;
         }
