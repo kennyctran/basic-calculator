@@ -83,28 +83,37 @@ $(document).ready(function () {
     });
     window.pending = false;
     window.currentNum = 0;
+    window.first = true;
     $('.op-clicked').removeClass('op-clicked');
     $screenText.text('0');
   };
 
   var handleOperatorClick = function ($btn) {
 
-
-
     if ($btn.attr('id') !== 'equals') {
       $('.op-clicked').removeClass('op-clicked')
       $btn.addClass('op-clicked');
 
-      // $.each(operations, function (k, op) {
-      //   if (op) {
-      //     total = currentNum;
-      //     currentNum = Number($screenText.text());
-      //     $screenText.text(calculate[k](total, currentNum));
-      //   }
-      // });
+      if (window.operations.equals) {
+        window.operatins.equals = false;
+      }
+
+      if (first) {
+        first = false;
+        total = Number($screenText.text());
+      } else {
+        $.each(operations, function (k, op) {
+          if (op) {
+            total = calculate[k](total, Number($screenText.text()));
+            current = Number($screenText.text());
+            $screenText.text(total);
+            operations[k] = false;
+          }
+        });
+      }
 
       // assign Number($screenText.text()) to currentNum
-      currentNum = Number($screenText.text());
+      // currentNum = Number($screenText.text());
       // the recently clicked op is now true
       operations[$btn.attr('id')] = true;
 
@@ -183,18 +192,27 @@ $(document).ready(function () {
 
   $(document).on('click', '#equals', function () {
     var calc;
-    $.each(operations, function (k, stored) {
-      if (stored) {
-        calc = calculate[k];
-        total = currentNum;
-        currentNum = Number($screenText.text());
 
-        total = calc(total, currentNum);
-        $screenText.text(total);
+    if (!operations.equals) {
+      $.each(operations, function (k, op) {
+        if (op) {
+          total = calculate[k](total, Number($screenText.text()));
+          currentNum = Number($screenText.text());
+          window.operations.equals = true;
+          $screenText.text(total);
+          return;
+        }
+      });
 
-        // operations[i] = false;
-      }
-    });
+    } else {
+      $.each(operations, function (k, op) {
+        if (op) {
+          total = calculate[k](Number($screenText.text()), currentNum);
+          $screenText.text(total);
+        }
+      });
+    }
+
     $('.op-clicked').removeClass('op-clicked');
   });
 
