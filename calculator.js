@@ -95,13 +95,18 @@ $(document).ready(function () {
       $('.op-clicked').removeClass('op-clicked')
       $btn.addClass('op-clicked');
 
+      // $.each(operations, function (k, op) {
+      //   if (op) {
+      //     total = currentNum;
+      //     currentNum = Number($screenText.text());
+      //     $screenText.text(calculate[k](total, currentNum));
+      //   }
+      // });
+
       // assign Number($screenText.text()) to currentNum
       currentNum = Number($screenText.text());
+      // the recently clicked op is now true
       operations[$btn.attr('id')] = true;
-
-      // if there is a true operator
-      // run that calculation on (total, currentNum)
-      // update screen to total
 
     }
     pending = true;
@@ -178,12 +183,16 @@ $(document).ready(function () {
 
   $(document).on('click', '#equals', function () {
     var calc;
-    $.each(operations, function (i, stored) {
+    $.each(operations, function (k, stored) {
       if (stored) {
-        calc = calculate[i];
-        total = calc(currentNum, Number($screenText.text()));
+        calc = calculate[k];
+        total = currentNum;
+        currentNum = Number($screenText.text());
+
+        total = calc(total, currentNum);
         $screenText.text(total);
-        operations[i] = false;
+
+        // operations[i] = false;
       }
     });
     $('.op-clicked').removeClass('op-clicked');
