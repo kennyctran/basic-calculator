@@ -65,14 +65,14 @@ $(document).ready(function () {
 
   // FUNCTIONS TO HANDLE EVENT LISTENERS-------------
 
-  var opStored = function () {
-    $.each(operations, function (i, stored) {
-      if (stored) {
-        total = calculate[i](total, currentNum);
-        screenText.text(total);
-      }
-    });
-  };
+  // var opStored = function () {
+  //   $.each(operations, function (i, stored) {
+  //     if (stored) {
+  //       total = calculate[i](total, currentNum);
+  //       screenText.text(total);
+  //     }
+  //   });
+  // };
 
   var reset = function () {
     window.total = 0;
@@ -88,13 +88,40 @@ $(document).ready(function () {
   };
 
   var handleOperatorClick = function ($btn) {
+
+
+
     if ($btn.attr('id') !== 'equals') {
       $('.op-clicked').removeClass('op-clicked')
       $btn.addClass('op-clicked');
+
+      // assign Number($screenText.text()) to currentNum
+      currentNum = Number($screenText.text());
+      operations[$btn.attr('id')] = true;
+
+      // if there is a true operator
+      // run that calculation on (total, currentNum)
+      // update screen to total
+
     }
+    pending = true;
   };
 
   var handleNumberClick = function ($num, $limit) {
+    // if an operator is highlighted, unhighlight when clicking a number
+    if ($('.op-clicked').length > 0) {
+      $('.op-clicked').removeClass('op-clicked');
+      $screenText.text('');
+    }
+    // if any operation is stored and num is pending, reset screen, not working for equals
+    // because there is no property for equals due to chaining equals for now
+    $.each(operations, function (i, stored) {
+      if (stored && pending) {
+        pending = false;
+        $screenText.text('');
+      }
+    });
+
     if ($num !== '.') {
       if ($screenText.text().length < $limit) {
         if ($screenText.text() === '0') {
@@ -150,7 +177,15 @@ $(document).ready(function () {
   });
 
   $(document).on('click', '#equals', function () {
-    opStored();
+    var calc;
+    $.each(operations, function (i, stored) {
+      if (stored) {
+        calc = calculate[i];
+        total = calc(currentNum, Number($screenText.text()));
+        $screenText.text(total);
+        operations[i] = false;
+      }
+    });
     $('.op-clicked').removeClass('op-clicked');
   });
 
