@@ -4,7 +4,7 @@ A basic calculator modeled after the Apple iPhone calculator, built with HTML, C
 My first project top to bottom.
 For this one I experimented with building the front-end first. 
 This presented some challenges later on which was due to the app's use of the user-inputted number
-to do calculations as well as update the front-end. 
+to do calculations as well as update the back-end. 
 
 HTML elements were created dynamically with Javascript, using the jQuery library.
 The CSS for the calculator was built primarily using CSS Grid.
