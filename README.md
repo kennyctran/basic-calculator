@@ -1,6 +1,8 @@
 # A Basic Calculator
 A basic calculator modeled after the Apple iPhone calculator, built with HTML, CSS, and ES5.
 
+![Calculator App](/Users/SwagForDays/Documents/projects/basic-calculator/project-media-github/basic-calculator-screenshot.JPG)
+
 My first project top to bottom.
 For this one I experimented with building the front-end first. 
 This presented some challenges later on which was due to the app's use of the user-inputted number
