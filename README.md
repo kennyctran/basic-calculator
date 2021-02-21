@@ -15,7 +15,7 @@ Features implemented in this calculator:
 * Calculations without clicking the "=" operator
   * *ex.* **1 + 2 -** (display: 3) **4 x** (display: -1) **5 ÷** (display: -5) **5 =** (display: -1) **=** (display: -0.2) **=** (display: -0.04) and so on
   * *Apple's calculator:* **1 + 2 -** (display: 3) **4 x** _(display: 4)_ **5 ÷** _(display: 20)_ **5 =** (display: -1) **=** (display: -0.2) **=** (display: -0.04)
-* Operators highligh on click and un-highlight in the same fashion as Apple's calculator
+* Operators highlight on click and un-highlight in the same fashion as Apple's calculator
 * +/- Sign toggles inputted number between negative and positive, works on 0 to toggle between 0 and -0
 * Clear button completely resets calculator for new number
 * Decimal can correctly only be added once
